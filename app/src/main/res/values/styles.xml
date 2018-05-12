@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+        <declare-styleable name="SlidingLayer">
+            <attr name="shadowDrawable" format="boolean"/>
+            <attr name="shadowSize" format="dimension"/>
+            <attr name="changeStateOnTap" format="boolean"/>
+            <attr name="offsetDistance" format="dimension"/>
+            <attr name="previewOffsetDistance" format="dimension"/>
+            <attr name="stickTo" format="enum">
+                <enum name="right" value="-1"/>
+                <enum name="left" value="-2"/>
+                <enum name="top" value="-3"/>
+                <enum name="bottom" value="-4"/>
+            </attr>
+        </declare-styleable>
+
+</resources>

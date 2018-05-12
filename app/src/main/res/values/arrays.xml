@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="orientation_filter_options">
+        <item>Horizontal (normal)</item>
+        <item>Mirror horizontal</item>
+        <item>Rotate 180</item>
+        <item>Mirror vertical</item>
+        <item>Mirror horizontal and rotate 270 CW</item>
+        <item>Rotate 90 CW</item>
+        <item>Mirror horizontal and rotate 90 CW</item>
+        <item>Rotate 270 CW</item>
+    </string-array>
+    <string-array name="iso_filter_options">
+        <item>50</item>
+        <item>80</item>
+        <item>100</item>
+        <item>200</item>
+        <item>400</item>
+        <item>800</item>
+        <item>1600</item>
+        <item>3200</item>
+        <item>6400</item>
+    </string-array>
+    <string-array name="maker_filter_options">
+        <item>Samsung</item>
+        <item>Huawei</item>
+        <item>Sony</item>
+        <item>Nokia</item>
+        <item>Honor</item>
+        <item>Xiaomi</item>
+        <item>LG</item>
+    </string-array>
+    <string-array name="flash_filter_options">
+        <item>No Flash</item>
+        <item>Fired</item>
+        <item>Fired, Return not detected</item>
+        <item>Fired, Return detected</item>
+        <item>On, Did not fire</item>
+        <item>On, Fired</item>
+        <item>On, Return not detected</item>
+        <item>On, Return detected</item>
+        <item>Off, Did not fire</item>
+        <item>Off, Did not fire, Return not detected</item>
+        <item>Auto, Did not fire</item>
+        <item>Auto, Fired</item>
+        <item>Auto, Fired, Return not detected</item>
+        <item>Auto, Fired, Return detected</item>
+        <item>No flash function</item>
+        <item>Off, No flash function</item>
+        <item>Fired, Red-eye reduction</item>
+        <item>Fired, Red-eye reduction, Return not detected</item>
+        <item>Fired, Red-eye reduction, Return detected</item>
+        <item>On, Red-eye reduction</item>
+        <item>On, Red-eye reduction, Return not detected</item>
+        <item>On, Red-eye reduction, Return detected</item>
+        <item>Off, Red-eye reduction</item>
+        <item>Auto, Did not fire, Red-eye reduction</item>
+        <item>Auto, Fired, Red-eye reduction</item>
+        <item>Auto, Fired, Red-eye reduction, Return not detected</item>
+        <item>Auto, Fired, Red-eye reduction, Return detected</item>
+    </string-array>
+
+</resources>

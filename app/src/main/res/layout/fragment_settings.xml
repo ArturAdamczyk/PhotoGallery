@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RadioButton
+        android:id="@+id/radioButtonFilterB"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="@string/label"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toTopOf="@+id/radioButtonFilterC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewFilterB"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonFilterA" />
+
+    <TextView
+        android:id="@+id/textViewSortLabel"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="@string/settings_sort_options_label"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/radioButtonSortA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewFilterLabel"
+        android:layout_width="200dp"
+        android:layout_height="29dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="@string/settings_filter_options_label"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/radioButtonFilterA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonSortG" />
+
+    <RadioButton
+        android:id="@+id/radioButtonSortA"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/label"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/radioButtonSortC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/radioButtonSortB"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSortLabel" />
+
+    <RadioButton
+        android:id="@+id/radioButtonSortC"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/label"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/radioButtonSortE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/radioButtonSortD"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonSortA" />
+
+    <RadioButton
+        android:id="@+id/radioButtonSortG"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/label"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/textViewFilterLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/radioButtonSortH"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonSortE" />
+
+    <RadioButton
+        android:id="@+id/radioButtonFilterC"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="@string/label"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toTopOf="@+id/radioButtonFilterD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewFilterC"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonFilterB" />
+
+    <RadioButton
+        android:id="@+id/radioButtonFilterD"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="@string/label"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewFilterD"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonFilterC" />
+
+    <RadioButton
+        android:id="@+id/radioButtonFilterA"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="@string/label"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toTopOf="@+id/radioButtonFilterB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewFilterA"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFilterLabel" />
+
+    <RadioButton
+        android:id="@+id/radioButtonSortE"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/label"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/radioButtonSortG"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/radioButtonSortF"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonSortC" />
+
+    <RadioButton
+        android:id="@+id/radioButtonSortB"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/label"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/radioButtonSortD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/radioButtonSortA"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSortLabel" />
+
+    <RadioButton
+        android:id="@+id/radioButtonSortD"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/label"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/radioButtonSortF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/radioButtonSortC"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonSortB" />
+
+    <RadioButton
+        android:id="@+id/radioButtonSortF"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/label"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/radioButtonSortH"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/radioButtonSortE"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonSortD" />
+
+    <RadioButton
+        android:id="@+id/radioButtonSortH"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/label"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/textViewFilterLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/radioButtonSortG"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonSortF" />
+
+    <TextView
+        android:id="@+id/textViewFilterA"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/empty"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewFilterB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/radioButtonFilterA"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFilterLabel" />
+
+    <TextView
+        android:id="@+id/textViewFilterB"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/empty"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/textViewFilterC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/radioButtonFilterB"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFilterA" />
+
+    <TextView
+        android:id="@+id/textViewFilterC"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/empty"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/textViewFilterD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/radioButtonFilterC"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFilterB" />
+
+    <TextView
+        android:id="@+id/textViewFilterD"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/empty"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/radioButtonFilterD"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFilterC" />
+
+</android.support.constraint.ConstraintLayout>
