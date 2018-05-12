@@ -12,3 +12,6 @@ Created with i.a. Retrofit2 +  RxJava2  + Java 8
 </ul> 
 
 
+Demo available here:
+https://drive.google.com/open?id=1gjx9bkt0K7zjWlny81P1IHkovkWFffb1
+
