@@ -13,5 +13,5 @@ Created with i.a. Retrofit2 +  RxJava2  + Java 8
 
 
 Demo available here:
-https://drive.google.com/open?id=1gjx9bkt0K7zjWlny81P1IHkovkWFffb1
+https://drive.google.com/open?id=1JaolsWRoaeGjorHeDlzgj4h0ynqbv_MN
 
