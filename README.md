@@ -6,9 +6,9 @@ Created with i.a. Retrofit2 +  RxJava2  + Java 8
 <h2>Features:</h2>
 
  <ul type="square">
-  <li>Preview and editing of image EXIF metadata</li>
-  <li>Taking photos</li>
-  <li>Exploring gallery</li>
+  <li>Preview and edit image EXIF metadata</li>
+  <li>Take photos</li>
+  <li>Explore gallery</li>
 </ul> 
 
 
