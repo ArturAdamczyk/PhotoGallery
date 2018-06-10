@@ -29,5 +29,4 @@ public class Params {
     public static final String INTENT_PHOTO_ID = "intent_photo_id";
 
     public static final String EMPTY_VALUE = "";
-    public static final int INTERNAL_SERVER_ERROR = 500;
 }

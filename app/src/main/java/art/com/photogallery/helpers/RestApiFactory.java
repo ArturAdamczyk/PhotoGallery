@@ -6,15 +6,10 @@ import android.util.Log;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
-import java.io.File;
-
 import art.com.photogallery.Params.WebServiceConfiguration;
 import art.com.photogallery.data.WebServiceSh;
 import art.com.photogallery.interfaces.RestApi;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -61,15 +56,4 @@ public class RestApiFactory {
                 new WebServiceSh(application).getWebServiceAddress() +
                 WebServiceConfiguration.WEB_SERVICE_PORT;
     }
-
-    public static MultipartBody.Part createFileRequestBody(File imageFile){
-        RequestBody requestFile =
-                RequestBody.create(
-                        MediaType.parse("multipart/form-data"),
-                        imageFile
-                );
-        MultipartBody.Part body = MultipartBody.Part.createFormData("picture", imageFile.getName(), requestFile);
-        return body;
-    }
-
 }
