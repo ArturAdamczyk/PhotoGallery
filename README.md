@@ -15,3 +15,5 @@ Created with i.a. Retrofit2 +  RxJava2  + Java 8
 Demo available here:
 https://drive.google.com/open?id=1JaolsWRoaeGjorHeDlzgj4h0ynqbv_MN
 
+[DEMO VIDEO](https://drive.google.com/file/d/180fPzxG9706dXWi8LgNWcRLIXxcPJ12o/view "Photo Gallery video demo")
+
