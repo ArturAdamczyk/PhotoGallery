@@ -57,7 +57,10 @@ public class SettingsFragment extends Fragment {
     private Callback delegate;
 
     private String filterOption = Params.EMPTY_VALUE;
-    private String filterConstraint = Params.EMPTY_VALUE;
+    private String filterConstraintISO = Params.EMPTY_VALUE;
+    private String filterConstraintOrientation = Params.EMPTY_VALUE;
+    private String filterConstraintMaker = Params.EMPTY_VALUE;
+    private String filterConstraintFlash = Params.EMPTY_VALUE;
     private String sortOption = Params.EMPTY_VALUE;
 
 
@@ -138,18 +141,22 @@ public class SettingsFragment extends Fragment {
             case R.id.radioButtonFilterA:
                 clearFilterOptions(radioButtonFilterA);
                 filterOption = Params.FILTER_BY_ORIENTATION;
+                delegate.onFilterOptionChanged(filterOption, filterConstraintOrientation);
                 break;
             case R.id.radioButtonFilterB:
                 clearFilterOptions(radioButtonFilterB);
                 filterOption = Params.FILTER_BY_ISO;
+                delegate.onFilterOptionChanged(filterOption, filterConstraintISO);
                 break;
             case R.id.radioButtonFilterC:
                 clearFilterOptions(radioButtonFilterC);
                 filterOption = Params.FILTER_BY_MAKER;
+                delegate.onFilterOptionChanged(filterOption, filterConstraintMaker);
                 break;
             case R.id.radioButtonFilterD:
                 clearFilterOptions(radioButtonFilterD);
                 filterOption = Params.FILTER_BY_FLASH;
+                delegate.onFilterOptionChanged(filterOption, filterConstraintFlash);
                 break;
             case R.id.textViewFilterA:
                 createFilterOrientationDialog();
@@ -164,14 +171,13 @@ public class SettingsFragment extends Fragment {
                 createFilterFlashDialog();
                 break;
         }
-        delegate.onFilterOptionChanged(filterOption, filterConstraint);
         delegate.onSortOptionChanged(sortOption);
     }
 
     @OnLongClick({R.id.radioButtonFilterA, R.id.radioButtonFilterB, R.id.radioButtonFilterC, R.id.radioButtonFilterD})
     public boolean onViewLongClicked(View view) {
         clearAllFilterOptions();
-        delegate.onFilterOptionChanged(filterOption, filterConstraint);
+        delegate.onFilterOptionChanged(filterOption, Params.EMPTY_VALUE);
         delegate.onSortOptionChanged(sortOption);
         return true;
     }
@@ -197,40 +203,39 @@ public class SettingsFragment extends Fragment {
                 .setItems(getResources().getStringArray(R.array.orientation_filter_options), (int position, String sortItem) -> {
                     switch(position){
                         case 0:
-                            filterConstraint = ExifParams.HORIZONTAL;
+                            filterConstraintOrientation = ExifParams.HORIZONTAL;
                             textViewFilterA.setText(getResources().getStringArray(R.array.orientation_filter_options)[position]);
                             break;
                         case 1:
-                            filterConstraint = ExifParams.MIRROR_HORIZONTAL;
+                            filterConstraintOrientation = ExifParams.MIRROR_HORIZONTAL;
                             textViewFilterA.setText(getResources().getStringArray(R.array.orientation_filter_options)[position]);
                             break;
                         case 2:
-                            filterConstraint = ExifParams.ROTATE_180;
+                            filterConstraintOrientation = ExifParams.ROTATE_180;
                             textViewFilterA.setText(getResources().getStringArray(R.array.orientation_filter_options)[position]);
                             break;
                         case 3:
-                            filterConstraint = ExifParams.MIRROR_VERTICAL;
+                            filterConstraintOrientation = ExifParams.MIRROR_VERTICAL;
                             textViewFilterA.setText(getResources().getStringArray(R.array.orientation_filter_options)[position]);
                             break;
                         case 4:
-                            filterConstraint = ExifParams.MIRROR_HORIZONTAL_ROTATE_270;
+                            filterConstraintOrientation = ExifParams.MIRROR_HORIZONTAL_ROTATE_270;
                             textViewFilterA.setText(getResources().getStringArray(R.array.orientation_filter_options)[position]);
                             break;
                         case 5:
-                            filterConstraint = ExifParams.ROTATE_90;
+                            filterConstraintOrientation = ExifParams.ROTATE_90;
                             textViewFilterA.setText(getResources().getStringArray(R.array.orientation_filter_options)[position]);
                             break;
                         case 6:
-                            filterConstraint = ExifParams.MIRROR_HORIZONTAL_ROTATE_90;
+                            filterConstraintOrientation = ExifParams.MIRROR_HORIZONTAL_ROTATE_90;
                             textViewFilterA.setText(getResources().getStringArray(R.array.orientation_filter_options)[position]);
                             break;
                         case 7:
-                            filterConstraint = ExifParams.ROTATE_270;
+                            filterConstraintOrientation = ExifParams.ROTATE_270;
                             textViewFilterA.setText(getResources().getStringArray(R.array.orientation_filter_options)[position]);
                             break;
                     }
-                    delegate.onFilterOptionChanged(filterOption, filterConstraint);
-                    delegate.onSortOptionChanged(sortOption);
+                    delegate.onFilterOptionChanged(filterOption, filterConstraintOrientation);
                 }).show();
     }
 
@@ -239,44 +244,43 @@ public class SettingsFragment extends Fragment {
                 .setItems(getResources().getStringArray(R.array.iso_filter_options), (int position, String sortItem) -> {
                     switch(position){
                         case 0:
-                            filterConstraint = ExifParams.ISO_50;
+                            filterConstraintISO = ExifParams.ISO_50;
                             textViewFilterB.setText(getResources().getStringArray(R.array.iso_filter_options)[position]);
                             break;
                         case 1:
-                            filterConstraint = ExifParams.ISO_80;
+                            filterConstraintISO = ExifParams.ISO_80;
                             textViewFilterB.setText(getResources().getStringArray(R.array.iso_filter_options)[position]);
                             break;
                         case 2:
-                            filterConstraint = ExifParams.ISO_100;
+                            filterConstraintISO = ExifParams.ISO_100;
                             textViewFilterB.setText(getResources().getStringArray(R.array.iso_filter_options)[position]);
                             break;
                         case 3:
-                            filterConstraint = ExifParams.ISO_200;
+                            filterConstraintISO = ExifParams.ISO_200;
                             textViewFilterB.setText(getResources().getStringArray(R.array.iso_filter_options)[position]);
                             break;
                         case 4:
-                            filterConstraint = ExifParams.ISO_400;
+                            filterConstraintISO = ExifParams.ISO_400;
                             textViewFilterB.setText(getResources().getStringArray(R.array.iso_filter_options)[position]);
                             break;
                         case 5:
-                            filterConstraint = ExifParams.ISO_800;
+                            filterConstraintISO = ExifParams.ISO_800;
                             textViewFilterB.setText(getResources().getStringArray(R.array.iso_filter_options)[position]);
                             break;
                         case 6:
-                            filterConstraint = ExifParams.ISO_1600;
+                            filterConstraintISO = ExifParams.ISO_1600;
                             textViewFilterB.setText(getResources().getStringArray(R.array.iso_filter_options)[position]);
                             break;
                         case 7:
-                            filterConstraint = ExifParams.ISO_3200;
+                            filterConstraintISO = ExifParams.ISO_3200;
                             textViewFilterB.setText(getResources().getStringArray(R.array.iso_filter_options)[position]);
                             break;
                         case 8:
-                            filterConstraint = ExifParams.ISO_6400;
+                            filterConstraintISO = ExifParams.ISO_6400;
                             textViewFilterB.setText(getResources().getStringArray(R.array.iso_filter_options)[position]);
                             break;
                     }
-                    delegate.onFilterOptionChanged(filterOption, filterConstraint);
-                    delegate.onSortOptionChanged(sortOption);
+                    delegate.onFilterOptionChanged(filterOption, filterConstraintISO);
                 }).show();
     }
 
@@ -285,36 +289,35 @@ public class SettingsFragment extends Fragment {
                 .setItems(getResources().getStringArray(R.array.maker_filter_options), (int position, String sortItem) -> {
                     switch(position){
                         case 0:
-                            filterConstraint = ExifParams.SAMSUNG;
+                            filterConstraintMaker = ExifParams.SAMSUNG;
                             textViewFilterC.setText(getResources().getStringArray(R.array.maker_filter_options)[position]);
                             break;
                         case 1:
-                            filterConstraint = ExifParams.HUAWEI;
+                            filterConstraintMaker = ExifParams.HUAWEI;
                             textViewFilterC.setText(getResources().getStringArray(R.array.maker_filter_options)[position]);
                             break;
                         case 2:
-                            filterConstraint = ExifParams.SONY;
+                            filterConstraintMaker = ExifParams.SONY;
                             textViewFilterC.setText(getResources().getStringArray(R.array.maker_filter_options)[position]);
                             break;
                         case 3:
-                            filterConstraint = ExifParams.NOKIA;
+                            filterConstraintMaker = ExifParams.NOKIA;
                             textViewFilterC.setText(getResources().getStringArray(R.array.maker_filter_options)[position]);
                             break;
                         case 4:
-                            filterConstraint = ExifParams.HONOR;
+                            filterConstraintMaker = ExifParams.HONOR;
                             textViewFilterC.setText(getResources().getStringArray(R.array.maker_filter_options)[position]);
                             break;
                         case 5:
-                            filterConstraint = ExifParams.XIAOMI;
+                            filterConstraintMaker = ExifParams.XIAOMI;
                             textViewFilterC.setText(getResources().getStringArray(R.array.maker_filter_options)[position]);
                             break;
                         case 6:
-                            filterConstraint = ExifParams.LG;
+                            filterConstraintMaker = ExifParams.LG;
                             textViewFilterC.setText(getResources().getStringArray(R.array.maker_filter_options)[position]);
                             break;
                     }
-                    delegate.onFilterOptionChanged(filterOption, filterConstraint);
-                    delegate.onSortOptionChanged(sortOption);
+                    delegate.onFilterOptionChanged(filterOption, filterConstraintMaker);
                 }).show();
     }
 
@@ -323,116 +326,115 @@ public class SettingsFragment extends Fragment {
                 .setItems(getResources().getStringArray(R.array.flash_filter_options), (int position, String sortItem) -> {
                     switch(position){
                         case 0:
-                            filterConstraint = ExifParams.NO_FLASH;
+                            filterConstraintFlash = ExifParams.NO_FLASH;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 1:
-                            filterConstraint = ExifParams.FIRED;
+                            filterConstraintFlash = ExifParams.FIRED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 2:
-                            filterConstraint = ExifParams.FIRED_RETURN_NOT_DETECTED;
+                            filterConstraintFlash = ExifParams.FIRED_RETURN_NOT_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 3:
-                            filterConstraint = ExifParams.FIRED_RETURN_DETECTED;
+                            filterConstraintFlash = ExifParams.FIRED_RETURN_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 4:
-                            filterConstraint = ExifParams.ON_BUT_NOT_FIRED;
+                            filterConstraintFlash = ExifParams.ON_BUT_NOT_FIRED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 5:
-                            filterConstraint = ExifParams.ON_FIRED;
+                            filterConstraintFlash = ExifParams.ON_FIRED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 6:
-                            filterConstraint = ExifParams.ON_RETURN_NOT_DETECTED;
+                            filterConstraintFlash = ExifParams.ON_RETURN_NOT_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 7:
-                            filterConstraint = ExifParams.ON_RETURN_DETECTED;
+                            filterConstraintFlash = ExifParams.ON_RETURN_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 8:
-                            filterConstraint = ExifParams.OFF_DID_NOT_FIRE;
+                            filterConstraintFlash = ExifParams.OFF_DID_NOT_FIRE;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 9:
-                            filterConstraint = ExifParams.OFF_DID_NOT_FIRE_RETURN_NOT_DETECTED;
+                            filterConstraintFlash = ExifParams.OFF_DID_NOT_FIRE_RETURN_NOT_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 10:
-                            filterConstraint = ExifParams.AUTO_DID_NOT_FIRE;
+                            filterConstraintFlash = ExifParams.AUTO_DID_NOT_FIRE;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 11:
-                            filterConstraint = ExifParams.AUTO_FIRED;
+                            filterConstraintFlash = ExifParams.AUTO_FIRED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 12:
-                            filterConstraint = ExifParams.AUTO_FIRED_RETURN_NOT_DETECTED;
+                            filterConstraintFlash = ExifParams.AUTO_FIRED_RETURN_NOT_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 13:
-                            filterConstraint = ExifParams.AUTO_FIRED_RETURN_DETECTED;
+                            filterConstraintFlash = ExifParams.AUTO_FIRED_RETURN_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 14:
-                            filterConstraint = ExifParams.NO_FLASH_FUNCTION;
+                            filterConstraintFlash = ExifParams.NO_FLASH_FUNCTION;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 15:
-                            filterConstraint = ExifParams.OFF_NO_FLASH_FUNCTION;
+                            filterConstraintFlash = ExifParams.OFF_NO_FLASH_FUNCTION;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 16:
-                            filterConstraint = ExifParams.FIRED_RED_EYE_REDUCTION;
+                            filterConstraintFlash = ExifParams.FIRED_RED_EYE_REDUCTION;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 17:
-                            filterConstraint = ExifParams.FIRED_RED_EYE_REDUCTION_RETURN_NOT_DETECTED;
+                            filterConstraintFlash = ExifParams.FIRED_RED_EYE_REDUCTION_RETURN_NOT_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 18:
-                            filterConstraint = ExifParams.FIRED_RED_EYE_REDUCTION_RETURN_DETECTED;
+                            filterConstraintFlash = ExifParams.FIRED_RED_EYE_REDUCTION_RETURN_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 19:
-                            filterConstraint = ExifParams.ON_RED_EYE_REDUCTION;
+                            filterConstraintFlash = ExifParams.ON_RED_EYE_REDUCTION;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 20:
-                            filterConstraint = ExifParams.ON_RED_EYE_REDUCTION_RETURN_NOT_DETECTED;
+                            filterConstraintFlash = ExifParams.ON_RED_EYE_REDUCTION_RETURN_NOT_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 21:
-                            filterConstraint = ExifParams.ON_RED_EYE_REDUCTION_RETURN_DETECTED;
+                            filterConstraintFlash = ExifParams.ON_RED_EYE_REDUCTION_RETURN_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 22:
-                            filterConstraint = ExifParams.OFF_RED_EYE_REDUCTION;
+                            filterConstraintFlash = ExifParams.OFF_RED_EYE_REDUCTION;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 23:
-                            filterConstraint = ExifParams.AUTO_DID_NOT_FIRE_RED_EYE_REDUCTION;
+                            filterConstraintFlash = ExifParams.AUTO_DID_NOT_FIRE_RED_EYE_REDUCTION;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 24:
-                            filterConstraint = ExifParams.AUTO_FIRED_RED_EYE_REDUCTION;
+                            filterConstraintFlash = ExifParams.AUTO_FIRED_RED_EYE_REDUCTION;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 25:
-                            filterConstraint = ExifParams.AUTO_FIRED_RED_EYE_REDUCTION_RETURN_NOT_DETECTED;
+                            filterConstraintFlash = ExifParams.AUTO_FIRED_RED_EYE_REDUCTION_RETURN_NOT_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                         case 26:
-                            filterConstraint = ExifParams.AUTO_FIRED_RED_EYE_REDUCTION_RETURN_DETECTED;
+                            filterConstraintFlash = ExifParams.AUTO_FIRED_RED_EYE_REDUCTION_RETURN_DETECTED;
                             textViewFilterD.setText(getResources().getStringArray(R.array.flash_filter_options)[position]);
                             break;
                     }
-                    delegate.onFilterOptionChanged(filterOption, filterConstraint);
-                    delegate.onSortOptionChanged(sortOption);
+                    delegate.onFilterOptionChanged(filterOption, filterConstraintFlash);
                 }).show();
     }
 
