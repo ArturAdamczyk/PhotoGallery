@@ -71,7 +71,8 @@ public class Photo {
 
     public void countResolution(){
         try{
-            this.exifData.setResolution(Integer.parseInt(this.exifData.getHeight()) * Integer.parseInt(this.exifData.getWidth()));
+            this.exifData.setResolution(
+                    Integer.parseInt(this.exifData.getHeight()) * Integer.parseInt(this.exifData.getWidth()));
         }catch(NumberFormatException e){
             this.exifData.setResolution(0);
         }
