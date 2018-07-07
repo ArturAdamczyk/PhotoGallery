@@ -36,6 +36,7 @@ import art.com.photogallery.models.Photo;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -59,6 +60,7 @@ public class GalleryFragment extends Fragment {
     private RestApi restApiClient;
     private GalleryAdapter galleryAdapter;
     private Messenger messenger;
+    private CompositeDisposable disposables;
 
 
     public static GalleryFragment newInstance() {
@@ -71,10 +73,18 @@ public class GalleryFragment extends Fragment {
         super.onCreate(savedInstanceState);
         this.CLASS_TAG = this.getActivity().getClass().getSimpleName();
         this.ctx = this.getActivity().getApplicationContext();
+        this.messenger = new Messenger();
+        this.disposables = new CompositeDisposable();
 
         initCameraConfiguration();
-        messenger = new Messenger();
         openServerConnectionDialog();
+    }
+
+    @Override
+    public void onStop() {
+        Optional.ofNullable(disposables)
+                .ifPresent(disposables -> disposables.clear());
+        super.onStop();
     }
 
     @Override
@@ -118,8 +128,8 @@ public class GalleryFragment extends Fragment {
                 @Override
                 public void onCanceled(EasyImage.ImageSource source, int type) {
                     if (source == EasyImage.ImageSource.CAMERA) {
-                        File photoFile = EasyImage.lastlyTakenButCanceledPhoto(ctx);
-                        if (photoFile != null) photoFile.delete();
+                        Optional.ofNullable(EasyImage.lastlyTakenButCanceledPhoto(ctx))
+                                .ifPresent(o -> o.delete());
                     }
                 }
             });
@@ -155,37 +165,45 @@ public class GalleryFragment extends Fragment {
 
     private void getData() {
         Optional.ofNullable(restApiClient).ifPresent(restApiClient -> {
-            restApiClient.getPhotos()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(response -> {
-                        messenger
-                                .logMessage(CLASS_TAG, getResources().getString(R.string.data_load_success))
-                                .showMessage(getResources().getString(R.string.gallery_photos_loaded_successfully), mainParentLayout);
-                        insertData(new ArrayList(response));
-                        refreshUI();
-                    }, throwable -> {
-                        messenger.logMessage(CLASS_TAG, throwable.getLocalizedMessage()).showMessage(getResources().getString(R.string.server_connection_error), mainParentLayout);
-                        messenger.logMessage(CLASS_TAG, getResources().getString(R.string.server_response_error)).showMessage(getResources().getString(R.string.data_load_error), mainParentLayout);
-                    });
+            Optional.ofNullable(disposables).ifPresent(disposables -> {
+                disposables.add(restApiClient.getPhotos()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(response -> {
+                            messenger
+                                    .logMessage(CLASS_TAG, getResources().getString(R.string.data_load_success))
+                                    .showMessage(getResources().getString(R.string.gallery_photos_loaded_successfully), mainParentLayout);
+                            insertData(new ArrayList(response));
+                            refreshUI();
+                        }, throwable -> {
+                            messenger.logMessage(CLASS_TAG, throwable.getLocalizedMessage())
+                                    .showMessage(getResources().getString(R.string.server_connection_error), mainParentLayout);
+                            messenger.logMessage(CLASS_TAG, getResources().getString(R.string.server_response_error))
+                                    .showMessage(getResources().getString(R.string.data_load_error), mainParentLayout);
+                        }));
+            });
         });
     }
 
     private void refreshData(String photoId){
         Optional.ofNullable(restApiClient).ifPresent(restApiClient -> {
-            restApiClient.getPhoto(photoId)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(response -> {
-                        messenger
-                                .logMessage(CLASS_TAG, getResources().getString(R.string.data_load_success))
-                                .showMessage(getResources().getString(R.string.gallery_photo_refresh_success), mainParentLayout);
-                        galleryAdapter.refreshPhoto(photoId,response);
-                        refreshUI();
-                    }, throwable -> {
-                        messenger.logMessage(CLASS_TAG, throwable.getLocalizedMessage()).showMessage(getResources().getString(R.string.server_connection_error), mainParentLayout);
-                        messenger.logMessage(CLASS_TAG, getResources().getString(R.string.server_response_error)).showMessage(getResources().getString(R.string.data_load_error), mainParentLayout);
-                    });
+            Optional.ofNullable(disposables).ifPresent(disposables -> {
+                disposables.add(restApiClient.getPhoto(photoId)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(response -> {
+                            messenger
+                                    .logMessage(CLASS_TAG, getResources().getString(R.string.data_load_success))
+                                    .showMessage(getResources().getString(R.string.gallery_photo_refresh_success), mainParentLayout);
+                            galleryAdapter.refreshPhoto(photoId,response);
+                            refreshUI();
+                        }, throwable -> {
+                            messenger.logMessage(CLASS_TAG, throwable.getLocalizedMessage())
+                                    .showMessage(getResources().getString(R.string.server_connection_error), mainParentLayout);
+                            messenger.logMessage(CLASS_TAG, getResources().getString(R.string.server_response_error))
+                                    .showMessage(getResources().getString(R.string.data_load_error), mainParentLayout);
+                        }));
+            });
         });
     }
 
@@ -197,20 +215,26 @@ public class GalleryFragment extends Fragment {
                 );
         MultipartBody.Part body = MultipartBody.Part.createFormData("picture", imageFile.getName(), requestFile);
         Optional.ofNullable(restApiClient).ifPresent(restApiClient -> {
-            restApiClient.uploadPhoto(body)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(response -> {
-                        if (imageFile != null) imageFile.delete();
-                        messenger
-                                .logMessage(CLASS_TAG, getResources().getString(R.string.gallery_photo_upload_success))
-                                .showMessage(getResources().getString(R.string.data_load_success), mainParentLayout);
-                        addPhoto(response);
-                        refreshUI();
-                    }, throwable -> {
-                        if (imageFile != null) imageFile.delete();
-                        messenger.logMessage(CLASS_TAG, throwable.getLocalizedMessage()).showMessage(getResources().getString(R.string.gallery_photo_upload_error), mainParentLayout);
-                    });
+            Optional.ofNullable(disposables).ifPresent(disposables -> {
+                disposables.add(restApiClient.uploadPhoto(body)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(response -> {
+                            Optional.ofNullable(imageFile)
+                                    .ifPresent(o -> o.delete());
+                            messenger
+                                    .logMessage(CLASS_TAG, getResources().getString(R.string.gallery_photo_upload_success))
+                                    .showMessage(getResources().getString(R.string.data_load_success), mainParentLayout);
+                            addPhoto(response);
+                            refreshUI();
+                        }, throwable -> {
+                            Optional.ofNullable(imageFile)
+                                    .ifPresent(o -> o.delete());
+                            messenger
+                                    .logMessage(CLASS_TAG, throwable.getLocalizedMessage())
+                                    .showMessage(getResources().getString(R.string.gallery_photo_upload_error), mainParentLayout);
+                        }));
+            });
         });
     }
 

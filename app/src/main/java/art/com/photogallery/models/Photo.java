@@ -36,7 +36,6 @@ public class Photo {
         this.exifData = new ExifData(photo.getExifData());
     }
 
-
     public static Comparator<Photo> getDateComparatorAsc(){
        return comparing(Photo::getExifData, comparing(ExifData::getDate));
     }
